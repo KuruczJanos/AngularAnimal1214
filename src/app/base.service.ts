@@ -15,9 +15,11 @@ export class BaseService {
   }
 
   loadAnimals(){
-    this.http.get(this.url).subscribe(
-      (res)=> this.animalSub.next(res)
-    )
+    this.http.get(this.url).subscribe({
+      next:(res)=> this.animalSub.next(res),
+      error:(res)=>console.log("Hiba az adatok lekérésében:", res)
+    }
+      )
   }
   getAnimals(){
     return this.animalSub
